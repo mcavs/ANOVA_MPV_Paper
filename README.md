@@ -1,2 +1,2 @@
 # ANOVA_MPV_Paper
-Supplemental materials of the manuscript "XXX"
+Supplemental materials of the manuscript "COMPARISON OF ONE-WAY ANOVA TESTS UNDER UNEQUAL VARIANCES IN TERMS OF MEDIAN P-VALUES"
