@@ -3,7 +3,7 @@
 # Comparison of one-way ANOVA tests under unequal variances in terms of median p-values
 #
 # Created by Mustafa Cavus
-# Date: Nov 19, 2021
+# Created date: Nov 19, 2021
 # Revised date: Jan 17, 2022
 # Contact: mustafacavus@eskisehir.edu.tr
 # ---------------------------------------------------------------------------------------
