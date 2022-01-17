@@ -25,6 +25,7 @@ library(doMC)    # parallel programming
 library(doRNG)   # set.seed() in parallel programming
 library(tidyr)   # basic data manipulations
 library(ggplot2) # visualize the results
+library(dplyr)   # data manupilation
 
 # ---------------------------------------------------------------------------------------
 # 2. Simulation functions
@@ -591,91 +592,91 @@ m <- rep(c(0, 0.4, 0.8, 1.2, 1.6, 2), 9)
 s <- rep(c(rep("σ=(1,2,3)", 9), rep("σ=(1,4,7)", 9), rep("σ=(0.1,0.2,0.3)", 9)), 2)
 s <- factor(s, levels=c("σ=(0.1,0.2,0.3)", "σ=(1,2,3)", "σ=(1,4,7)"))
                 
-                k3_bal <- cbind(sample_size = rep(n_k3_bal, each = 10000),
-                                sd = rep(s, each = 10000),
-                                effect_size = rep(m, each = 10000),
-                                repetition = res3_bal$X,
-                                res3_bal[,-1])
+k3_bal <- cbind(sample_size = rep(n_k3_bal, each = 10000),
+                sd = rep(s, each = 10000),
+                effect_size = rep(m, each = 10000),
+                repetition = res3_bal$X,
+                res3_bal[,-1])
                 
-                k3_unb <- cbind(sample_size = rep(n_k3_unb, each = 10000),
-                                sd = rep(s, each = 10000),
-                                effect_size = rep(m, each = 10000),
-                                repetition = res3_unb$X,
-                                res3_unb[,-1])
+k3_unb <- cbind(sample_size = rep(n_k3_unb, each = 10000),
+                sd = rep(s, each = 10000),
+                effect_size = rep(m, each = 10000),
+                repetition = res3_unb$X,
+                res3_unb[,-1])
                 
-                k3_nep <- cbind(sample_size = rep(n_k3_nep, each = 10000),
-                                sd = rep(s, each = 10000),
-                                effect_size = rep(m, each = 10000),
-                                repetition = res3_nep$X,
-                                res3_nep[,-1])
+k3_nep <- cbind(sample_size = rep(n_k3_nep, each = 10000),
+                sd = rep(s, each = 10000),
+                effect_size = rep(m, each = 10000),
+                repetition = res3_nep$X,
+                res3_nep[,-1])
                 
-                # for k = 5
-                res5.1.1  <- read.csv("res5.1.1.csv");  res5.1.2  <- read.csv("res5.1.2.csv");  res5.1.3  <- read.csv("res5.1.3.csv")
-                res5.1.4  <- read.csv("res5.1.4.csv");  res5.1.5  <- read.csv("res5.1.5.csv");  res5.1.6  <- read.csv("res5.1.6.csv")
-                res5.2.1  <- read.csv("res5.2.1.csv");  res5.2.2  <- read.csv("res5.2.2.csv");  res5.2.3  <- read.csv("res5.2.3.csv")
-                res5.2.4  <- read.csv("res5.2.4.csv");  res5.2.5  <- read.csv("res5.2.5.csv");  res5.2.6  <- read.csv("res5.2.6.csv")
-                res5.3.1  <- read.csv("res5.3.1.csv");  res5.3.2  <- read.csv("res5.3.2.csv");  res5.3.3  <- read.csv("res5.3.3.csv")
-                res5.3.4  <- read.csv("res5.3.4.csv");  res5.3.5  <- read.csv("res5.3.5.csv");  res5.3.6  <- read.csv("res5.3.6.csv")
-                res5.4.1  <- read.csv("res5.4.1.csv");  res5.4.2  <- read.csv("res5.4.2.csv");  res5.4.3  <- read.csv("res5.4.3.csv")
-                res5.4.4  <- read.csv("res5.4.4.csv");  res5.4.5  <- read.csv("res5.4.5.csv");  res5.4.6  <- read.csv("res5.4.6.csv")
-                res5.5.1  <- read.csv("res5.5.1.csv");  res5.5.2  <- read.csv("res5.5.2.csv");  res5.5.3  <- read.csv("res5.5.3.csv")
-                res5.5.4  <- read.csv("res5.5.4.csv");  res5.5.5  <- read.csv("res5.5.5.csv");  res5.5.6  <- read.csv("res5.5.6.csv")
-                res5.6.1  <- read.csv("res5.6.1.csv");  res5.6.2  <- read.csv("res5.6.2.csv");  res5.6.3  <- read.csv("res5.6.3.csv")
-                res5.6.4  <- read.csv("res5.6.4.csv");  res5.6.5  <- read.csv("res5.6.5.csv");  res5.6.6  <- read.csv("res5.6.6.csv")
-                res5.7.1  <- read.csv("res5.7.1.csv");  res5.7.2  <- read.csv("res5.7.2.csv");  res5.7.3  <- read.csv("res5.7.3.csv")
-                res5.7.4  <- read.csv("res5.7.4.csv");  res5.7.5  <- read.csv("res5.7.5.csv");  res5.7.6  <- read.csv("res5.7.6.csv")
-                res5.8.1  <- read.csv("res5.8.1.csv");  res5.8.2  <- read.csv("res5.8.2.csv");  res5.8.3  <- read.csv("res5.8.3.csv")
-                res5.8.4  <- read.csv("res5.8.4.csv");  res5.8.5  <- read.csv("res5.8.5.csv");  res5.8.6  <- read.csv("res5.8.6.csv")
-                res5.9.1  <- read.csv("res5.9.1.csv");  res5.9.2  <- read.csv("res5.9.2.csv");  res5.9.3  <- read.csv("res5.9.3.csv")
-                res5.9.4  <- read.csv("res5.9.4.csv");  res5.9.5  <- read.csv("res5.9.5.csv");  res5.9.6  <- read.csv("res5.9.6.csv")
-                res5.10.1 <- read.csv("res5.10.1.csv"); res5.10.2 <- read.csv("res5.10.2.csv"); res5.10.3 <- read.csv("res5.10.3.csv")
-                res5.10.4 <- read.csv("res5.10.4.csv"); res5.10.5 <- read.csv("res5.10.5.csv"); res5.10.6 <- read.csv("res5.10.6.csv")
-                res5.11.1 <- read.csv("res5.11.1.csv"); res5.11.2 <- read.csv("res5.11.2.csv"); res5.11.3 <- read.csv("res5.11.3.csv")
-                res5.11.4 <- read.csv("res5.11.4.csv"); res5.11.5 <- read.csv("res5.11.5.csv"); res5.11.6 <- read.csv("res5.11.6.csv")
-                res5.12.1 <- read.csv("res5.12.1.csv"); res5.12.2 <- read.csv("res5.12.2.csv"); res5.12.3 <- read.csv("res5.12.3.csv")
-                res5.12.4 <- read.csv("res5.12.4.csv"); res5.12.5 <- read.csv("res5.12.5.csv"); res5.12.6 <- read.csv("res5.12.6.csv")
-                res5.13.1 <- read.csv("res5.13.1.csv"); res5.13.2 <- read.csv("res5.13.2.csv"); res5.13.3 <- read.csv("res5.13.3.csv")
-                res5.13.4 <- read.csv("res5.13.4.csv"); res5.13.5 <- read.csv("res5.13.5.csv"); res5.13.6 <- read.csv("res5.13.6.csv")
-                res5.14.1 <- read.csv("res5.14.1.csv"); res5.14.2 <- read.csv("res5.14.2.csv"); res5.14.3 <- read.csv("res5.14.3.csv")
-                res5.14.4 <- read.csv("res5.14.4.csv"); res5.14.5 <- read.csv("res5.14.5.csv"); res5.14.6 <- read.csv("res5.14.6.csv")
-                res5.15.1 <- read.csv("res5.15.1.csv"); res5.15.2 <- read.csv("res5.15.2.csv"); res5.15.3 <- read.csv("res5.15.3.csv")
-                res5.15.4 <- read.csv("res5.15.4.csv"); res5.15.5 <- read.csv("res5.15.5.csv"); res5.15.6 <- read.csv("res5.15.6.csv")
-                res5.16.1 <- read.csv("res5.16.1.csv"); res5.16.2 <- read.csv("res5.16.2.csv"); res5.16.3 <- read.csv("res5.16.3.csv")
-                res5.16.4 <- read.csv("res5.16.4.csv"); res5.16.5 <- read.csv("res5.16.5.csv"); res5.16.6 <- read.csv("res5.16.6.csv")
-                res5.17.1 <- read.csv("res5.17.1.csv"); res5.17.2 <- read.csv("res5.17.2.csv"); res5.17.3 <- read.csv("res5.17.3.csv")
-                res5.17.4 <- read.csv("res5.17.4.csv"); res5.17.5 <- read.csv("res5.17.5.csv"); res5.17.6 <- read.csv("res5.17.6.csv")
-                res5.18.1 <- read.csv("res5.18.1.csv"); res5.18.2 <- read.csv("res5.18.2.csv"); res5.18.3 <- read.csv("res5.18.3.csv")
-                res5.18.4 <- read.csv("res5.18.4.csv"); res5.18.5 <- read.csv("res5.18.5.csv"); res5.18.6 <- read.csv("res5.18.6.csv")
+# for k = 5
+res5.1.1  <- read.csv("res5.1.1.csv");  res5.1.2  <- read.csv("res5.1.2.csv");  res5.1.3  <- read.csv("res5.1.3.csv")
+res5.1.4  <- read.csv("res5.1.4.csv");  res5.1.5  <- read.csv("res5.1.5.csv");  res5.1.6  <- read.csv("res5.1.6.csv")
+res5.2.1  <- read.csv("res5.2.1.csv");  res5.2.2  <- read.csv("res5.2.2.csv");  res5.2.3  <- read.csv("res5.2.3.csv")
+res5.2.4  <- read.csv("res5.2.4.csv");  res5.2.5  <- read.csv("res5.2.5.csv");  res5.2.6  <- read.csv("res5.2.6.csv")
+res5.3.1  <- read.csv("res5.3.1.csv");  res5.3.2  <- read.csv("res5.3.2.csv");  res5.3.3  <- read.csv("res5.3.3.csv")
+res5.3.4  <- read.csv("res5.3.4.csv");  res5.3.5  <- read.csv("res5.3.5.csv");  res5.3.6  <- read.csv("res5.3.6.csv")
+res5.4.1  <- read.csv("res5.4.1.csv");  res5.4.2  <- read.csv("res5.4.2.csv");  res5.4.3  <- read.csv("res5.4.3.csv")
+res5.4.4  <- read.csv("res5.4.4.csv");  res5.4.5  <- read.csv("res5.4.5.csv");  res5.4.6  <- read.csv("res5.4.6.csv")
+res5.5.1  <- read.csv("res5.5.1.csv");  res5.5.2  <- read.csv("res5.5.2.csv");  res5.5.3  <- read.csv("res5.5.3.csv")
+res5.5.4  <- read.csv("res5.5.4.csv");  res5.5.5  <- read.csv("res5.5.5.csv");  res5.5.6  <- read.csv("res5.5.6.csv")
+res5.6.1  <- read.csv("res5.6.1.csv");  res5.6.2  <- read.csv("res5.6.2.csv");  res5.6.3  <- read.csv("res5.6.3.csv")
+res5.6.4  <- read.csv("res5.6.4.csv");  res5.6.5  <- read.csv("res5.6.5.csv");  res5.6.6  <- read.csv("res5.6.6.csv")
+res5.7.1  <- read.csv("res5.7.1.csv");  res5.7.2  <- read.csv("res5.7.2.csv");  res5.7.3  <- read.csv("res5.7.3.csv")
+res5.7.4  <- read.csv("res5.7.4.csv");  res5.7.5  <- read.csv("res5.7.5.csv");  res5.7.6  <- read.csv("res5.7.6.csv")
+res5.8.1  <- read.csv("res5.8.1.csv");  res5.8.2  <- read.csv("res5.8.2.csv");  res5.8.3  <- read.csv("res5.8.3.csv")
+res5.8.4  <- read.csv("res5.8.4.csv");  res5.8.5  <- read.csv("res5.8.5.csv");  res5.8.6  <- read.csv("res5.8.6.csv")
+res5.9.1  <- read.csv("res5.9.1.csv");  res5.9.2  <- read.csv("res5.9.2.csv");  res5.9.3  <- read.csv("res5.9.3.csv")
+res5.9.4  <- read.csv("res5.9.4.csv");  res5.9.5  <- read.csv("res5.9.5.csv");  res5.9.6  <- read.csv("res5.9.6.csv")
+res5.10.1 <- read.csv("res5.10.1.csv"); res5.10.2 <- read.csv("res5.10.2.csv"); res5.10.3 <- read.csv("res5.10.3.csv")
+res5.10.4 <- read.csv("res5.10.4.csv"); res5.10.5 <- read.csv("res5.10.5.csv"); res5.10.6 <- read.csv("res5.10.6.csv")
+res5.11.1 <- read.csv("res5.11.1.csv"); res5.11.2 <- read.csv("res5.11.2.csv"); res5.11.3 <- read.csv("res5.11.3.csv")
+res5.11.4 <- read.csv("res5.11.4.csv"); res5.11.5 <- read.csv("res5.11.5.csv"); res5.11.6 <- read.csv("res5.11.6.csv")
+res5.12.1 <- read.csv("res5.12.1.csv"); res5.12.2 <- read.csv("res5.12.2.csv"); res5.12.3 <- read.csv("res5.12.3.csv")
+res5.12.4 <- read.csv("res5.12.4.csv"); res5.12.5 <- read.csv("res5.12.5.csv"); res5.12.6 <- read.csv("res5.12.6.csv")
+res5.13.1 <- read.csv("res5.13.1.csv"); res5.13.2 <- read.csv("res5.13.2.csv"); res5.13.3 <- read.csv("res5.13.3.csv")
+res5.13.4 <- read.csv("res5.13.4.csv"); res5.13.5 <- read.csv("res5.13.5.csv"); res5.13.6 <- read.csv("res5.13.6.csv")
+res5.14.1 <- read.csv("res5.14.1.csv"); res5.14.2 <- read.csv("res5.14.2.csv"); res5.14.3 <- read.csv("res5.14.3.csv")
+res5.14.4 <- read.csv("res5.14.4.csv"); res5.14.5 <- read.csv("res5.14.5.csv"); res5.14.6 <- read.csv("res5.14.6.csv")
+res5.15.1 <- read.csv("res5.15.1.csv"); res5.15.2 <- read.csv("res5.15.2.csv"); res5.15.3 <- read.csv("res5.15.3.csv")
+res5.15.4 <- read.csv("res5.15.4.csv"); res5.15.5 <- read.csv("res5.15.5.csv"); res5.15.6 <- read.csv("res5.15.6.csv")
+res5.16.1 <- read.csv("res5.16.1.csv"); res5.16.2 <- read.csv("res5.16.2.csv"); res5.16.3 <- read.csv("res5.16.3.csv")
+res5.16.4 <- read.csv("res5.16.4.csv"); res5.16.5 <- read.csv("res5.16.5.csv"); res5.16.6 <- read.csv("res5.16.6.csv")
+res5.17.1 <- read.csv("res5.17.1.csv"); res5.17.2 <- read.csv("res5.17.2.csv"); res5.17.3 <- read.csv("res5.17.3.csv")
+res5.17.4 <- read.csv("res5.17.4.csv"); res5.17.5 <- read.csv("res5.17.5.csv"); res5.17.6 <- read.csv("res5.17.6.csv")
+res5.18.1 <- read.csv("res5.18.1.csv"); res5.18.2 <- read.csv("res5.18.2.csv"); res5.18.3 <- read.csv("res5.18.3.csv")
+res5.18.4 <- read.csv("res5.18.4.csv"); res5.18.5 <- read.csv("res5.18.5.csv"); res5.18.6 <- read.csv("res5.18.6.csv")
                 
-                res5_bal <- rbind(res5.1.1,  res5.1.2,  res5.1.3,  res5.1.4,  res5.1.5,  res5.1.6,
-                              res5.2.1,  res5.2.2,  res5.2.3,  res5.2.4,  res5.2.5,  res5.2.6,
-                              res5.3.1,  res5.3.2,  res5.3.3,  res5.3.4,  res5.3.5,  res5.3.6,
-                              res5.4.1,  res5.4.2,  res5.4.3,  res5.4.4,  res5.4.5,  res5.4.6,
-                              res5.5.1,  res5.5.2,  res5.5.3,  res5.5.4,  res5.5.5,  res5.5.6,
-                              res5.6.1,  res5.6.2,  res5.6.3,  res5.6.4,  res5.6.5,  res5.6.6,
-                              res5.7.1,  res5.7.2,  res5.7.3,  res5.7.4,  res5.7.5,  res5.7.6,
-                              res5.8.1,  res5.8.2,  res5.8.3,  res5.8.4,  res5.8.5,  res5.8.6,
-                              res5.9.1,  res5.9.2,  res5.9.3,  res5.9.4,  res5.9.5,  res5.9.6)
+res5_bal <- rbind(res5.1.1,  res5.1.2,  res5.1.3,  res5.1.4,  res5.1.5,  res5.1.6,
+                  res5.2.1,  res5.2.2,  res5.2.3,  res5.2.4,  res5.2.5,  res5.2.6,
+                  res5.3.1,  res5.3.2,  res5.3.3,  res5.3.4,  res5.3.5,  res5.3.6,
+                  res5.4.1,  res5.4.2,  res5.4.3,  res5.4.4,  res5.4.5,  res5.4.6,
+                  res5.5.1,  res5.5.2,  res5.5.3,  res5.5.4,  res5.5.5,  res5.5.6,
+                  res5.6.1,  res5.6.2,  res5.6.3,  res5.6.4,  res5.6.5,  res5.6.6,
+                  res5.7.1,  res5.7.2,  res5.7.3,  res5.7.4,  res5.7.5,  res5.7.6,
+                  res5.8.1,  res5.8.2,  res5.8.3,  res5.8.4,  res5.8.5,  res5.8.6,
+                  res5.9.1,  res5.9.2,  res5.9.3,  res5.9.4,  res5.9.5,  res5.9.6)
                 
-                res5_unb <- rbind(res5.10.1, res5.10.2, res5.10.3, res5.10.4, res5.10.5, res5.10.6,
-                              res5.11.1, res5.11.2, res5.11.3, res5.11.4, res5.11.5, res5.11.6,
-                              res5.12.1, res5.12.2, res5.12.3, res5.12.4, res5.12.5, res5.12.6,
-                              res5.13.1, res5.13.2, res5.13.3, res5.13.4, res5.13.5, res5.13.6,
-                              res5.14.1, res5.14.2, res5.14.3, res5.14.4, res5.14.5, res5.14.6,
-                              res5.15.1, res5.15.2, res5.15.3, res5.15.4, res5.15.5, res5.15.6,
-                              res5.16.1, res5.16.2, res5.16.3, res5.16.4, res5.16.5, res5.16.6,
-                              res5.17.1, res5.17.2, res5.17.3, res5.17.4, res5.17.5, res5.17.6,
-                              res5.18.1, res5.18.2, res5.18.3, res5.18.4, res5.18.5, res5.18.6)
+res5_unb <- rbind(res5.10.1, res5.10.2, res5.10.3, res5.10.4, res5.10.5, res5.10.6,
+                  res5.11.1, res5.11.2, res5.11.3, res5.11.4, res5.11.5, res5.11.6,
+                  res5.12.1, res5.12.2, res5.12.3, res5.12.4, res5.12.5, res5.12.6,
+                  res5.13.1, res5.13.2, res5.13.3, res5.13.4, res5.13.5, res5.13.6,
+                  res5.14.1, res5.14.2, res5.14.3, res5.14.4, res5.14.5, res5.14.6,
+                  res5.15.1, res5.15.2, res5.15.3, res5.15.4, res5.15.5, res5.15.6,
+                  res5.16.1, res5.16.2, res5.16.3, res5.16.4, res5.16.5, res5.16.6,
+                  res5.17.1, res5.17.2, res5.17.3, res5.17.4, res5.17.5, res5.17.6,
+                  res5.18.1, res5.18.2, res5.18.3, res5.18.4, res5.18.5, res5.18.6)
                 
-                res5_nep <- rbind(res5.19.1, res5.19.2, res5.19.3, res5.19.4, res5.19.5, res5.19.6,
-                                  res5.20.1, res5.20.2, res5.20.3, res5.20.4, res5.20.5, res5.20.6,
-                                  res5.21.1, res5.21.2, res5.21.3, res5.21.4, res5.21.5, res5.21.6,
-                                  res5.22.1, res5.22.2, res5.22.3, res5.22.4, res5.22.5, res5.22.6,
-                                  res5.23.1, res5.23.2, res5.23.3, res5.23.4, res5.23.5, res5.23.6,
-                                  res5.24.1, res5.24.2, res5.24.3, res5.24.4, res5.24.5, res5.24.6,
-                                  res5.25.1, res5.25.2, res5.25.3, res5.25.4, res5.25.5, res5.25.6,
-                                  res5.26.1, res5.26.2, res5.26.3, res5.26.4, res5.26.5, res5.26.6,
-                                  res5.27.1, res5.27.2, res5.27.3, res5.27.4, res5.27.5, res5.27.6)
+res5_nep <- rbind(res5.19.1, res5.19.2, res5.19.3, res5.19.4, res5.19.5, res5.19.6,
+                  res5.20.1, res5.20.2, res5.20.3, res5.20.4, res5.20.5, res5.20.6,
+                  res5.21.1, res5.21.2, res5.21.3, res5.21.4, res5.21.5, res5.21.6,
+                  res5.22.1, res5.22.2, res5.22.3, res5.22.4, res5.22.5, res5.22.6,
+                  res5.23.1, res5.23.2, res5.23.3, res5.23.4, res5.23.5, res5.23.6,
+                  res5.24.1, res5.24.2, res5.24.3, res5.24.4, res5.24.5, res5.24.6,
+                  res5.25.1, res5.25.2, res5.25.3, res5.25.4, res5.25.5, res5.25.6,
+                  res5.26.1, res5.26.2, res5.26.3, res5.26.4, res5.26.5, res5.26.6,
+                  res5.27.1, res5.27.2, res5.27.3, res5.27.4, res5.27.5, res5.27.6)
  
 
 n_k5_bal <- c(rep(c(rep("n=(10,10,10,10,10)", 6), rep("n=(30,30,30,30,30)", 6), rep("n=(50,50,50,50,50)", 6)), 3))
@@ -689,92 +690,92 @@ n_k5_nep <- factor(n, levels=c("n=(12,18,30,42,48)", "n=(50,50,50,50,50)", "n=(2
 m <- rep(c(0, 0.4, 0.8, 1.2, 1.6, 2), 9)
 s <- rep(c(rep("σ=(1,2,3,4,5)", 9), rep("σ=(1,4,7,11,15)", 9), rep("σ=(0.1,0.2,0.3,0.4,0.5)", 9)), 2)
                 
-                k5_bal <- cbind(sample_size = rep(n_k5_bal, each = 10000),
-                                sd = rep(s, each = 10000),
-                                effect_size = rep(m, each = 10000),
-                                repetition = res5_bal$X,
-                                res5_bal[,-1])
+k5_bal <- cbind(sample_size = rep(n_k5_bal, each = 10000),
+                sd = rep(s, each = 10000),
+                effect_size = rep(m, each = 10000),
+                repetition = res5_bal$X,
+                res5_bal[,-1])
                 
-                k5_unb <- cbind(sample_size = rep(n_k5_unb, each = 10000),
-                                sd = rep(s, each = 10000),
-                                effect_size = rep(m, each = 10000),
-                                repetition = res5_unb$X,
-                                res5_unb[,-1])
+k5_unb <- cbind(sample_size = rep(n_k5_unb, each = 10000),
+                sd = rep(s, each = 10000),
+                effect_size = rep(m, each = 10000),
+                repetition = res5_unb$X,
+                res5_unb[,-1])
                 
-                k5_nep <- cbind(sample_size = rep(n_k5_nep, each = 10000),
-                                sd = rep(s, each = 10000),
-                                effect_size = rep(m, each = 10000),
-                                repetition = res5_nep$X,
-                                res5_nep[,-1])
+k5_nep <- cbind(sample_size = rep(n_k5_nep, each = 10000),
+                sd = rep(s, each = 10000),
+                effect_size = rep(m, each = 10000),
+                repetition = res5_nep$X,
+                res5_nep[,-1])
                 
-                # for k = 7
-                res7.1.1  <- read.csv("res7.1.1.csv");  res7.1.2  <- read.csv("res7.1.2.csv");  res7.1.3  <- read.csv("res7.1.3.csv")
-                res7.1.4  <- read.csv("res7.1.4.csv");  res7.1.5  <- read.csv("res7.1.5.csv");  res7.1.6  <- read.csv("res7.1.6.csv")
-                res7.2.1  <- read.csv("res7.2.1.csv");  res7.2.2  <- read.csv("res7.2.2.csv");  res7.2.3  <- read.csv("res7.2.3.csv")
-                res7.2.4  <- read.csv("res7.2.4.csv");  res7.2.5  <- read.csv("res7.2.5.csv");  res7.2.6  <- read.csv("res7.2.6.csv")
-                res7.3.1  <- read.csv("res7.3.1.csv");  res7.3.2  <- read.csv("res7.3.2.csv");  res7.3.3  <- read.csv("res7.3.3.csv")
-                res7.3.4  <- read.csv("res7.3.4.csv");  res7.3.5  <- read.csv("res7.3.5.csv");  res7.3.6  <- read.csv("res7.3.6.csv")
-                res7.4.1  <- read.csv("res7.4.1.csv");  res7.4.2  <- read.csv("res7.4.2.csv");  res7.4.3  <- read.csv("res7.4.3.csv")
-                res7.4.4  <- read.csv("res7.4.4.csv");  res7.4.5  <- read.csv("res7.4.5.csv");  res7.4.6  <- read.csv("res7.4.6.csv")
-                res7.5.1  <- read.csv("res7.5.1.csv");  res7.5.2  <- read.csv("res7.5.2.csv");  res7.5.3  <- read.csv("res7.5.3.csv")
-                res7.5.4  <- read.csv("res7.5.4.csv");  res7.5.5  <- read.csv("res7.5.5.csv");  res7.5.6  <- read.csv("res7.5.6.csv")
-                res7.6.1  <- read.csv("res7.6.1.csv");  res7.6.2  <- read.csv("res7.6.2.csv");  res7.6.3  <- read.csv("res7.6.3.csv")
-                res7.6.4  <- read.csv("res7.6.4.csv");  res7.6.5  <- read.csv("res7.6.5.csv");  res7.6.6  <- read.csv("res7.6.6.csv")
-                res7.7.1  <- read.csv("res7.7.1.csv");  res7.7.2  <- read.csv("res7.7.2.csv");  res7.7.3  <- read.csv("res7.7.3.csv")
-                res7.7.4  <- read.csv("res7.7.4.csv");  res7.7.5  <- read.csv("res7.7.5.csv");  res7.7.6  <- read.csv("res7.7.6.csv")
-                res7.8.1  <- read.csv("res7.8.1.csv");  res7.8.2  <- read.csv("res7.8.2.csv");  res7.8.3  <- read.csv("res7.8.3.csv")
-                res7.8.4  <- read.csv("res7.8.4.csv");  res7.8.5  <- read.csv("res7.8.5.csv");  res7.8.6  <- read.csv("res7.8.6.csv")
-                res7.9.1  <- read.csv("res7.9.1.csv");  res7.9.2  <- read.csv("res7.9.2.csv");  res7.9.3  <- read.csv("res7.9.3.csv")
-                res7.9.4  <- read.csv("res7.9.4.csv");  res7.9.5  <- read.csv("res7.9.5.csv");  res7.9.6  <- read.csv("res7.9.6.csv")
-                res7.10.1 <- read.csv("res7.10.1.csv"); res7.10.2 <- read.csv("res7.10.2.csv"); res7.10.3 <- read.csv("res7.10.3.csv")
-                res7.10.4 <- read.csv("res7.10.4.csv"); res7.10.5 <- read.csv("res7.10.5.csv"); res7.10.6 <- read.csv("res7.10.6.csv")
-                res7.11.1 <- read.csv("res7.11.1.csv"); res7.11.2 <- read.csv("res7.11.2.csv"); res7.11.3 <- read.csv("res7.11.3.csv")
-                res7.11.4 <- read.csv("res7.11.4.csv"); res7.11.5 <- read.csv("res7.11.5.csv"); res7.11.6 <- read.csv("res7.11.6.csv")
-                res7.12.1 <- read.csv("res7.12.1.csv"); res7.12.2 <- read.csv("res7.12.2.csv"); res7.12.3 <- read.csv("res7.12.3.csv")
-                res7.12.4 <- read.csv("res7.12.4.csv"); res7.12.5 <- read.csv("res7.12.5.csv"); res7.12.6 <- read.csv("res7.12.6.csv")
-                res7.13.1 <- read.csv("res7.13.1.csv"); res7.13.2 <- read.csv("res7.13.2.csv"); res7.13.3 <- read.csv("res7.13.3.csv")
-                res7.13.4 <- read.csv("res7.13.4.csv"); res7.13.5 <- read.csv("res7.13.5.csv"); res7.13.6 <- read.csv("res7.13.6.csv")
-                res7.14.1 <- read.csv("res7.14.1.csv"); res7.14.2 <- read.csv("res7.14.2.csv"); res7.14.3 <- read.csv("res7.14.3.csv")
-                res7.14.4 <- read.csv("res7.14.4.csv"); res7.14.5 <- read.csv("res7.14.5.csv"); res7.14.6 <- read.csv("res7.14.6.csv")
-                res7.15.1 <- read.csv("res7.15.1.csv"); res7.15.2 <- read.csv("res7.15.2.csv"); res7.15.3 <- read.csv("res7.15.3.csv")
-                res7.15.4 <- read.csv("res7.15.4.csv"); res7.15.5 <- read.csv("res7.15.5.csv"); res7.15.6 <- read.csv("res7.15.6.csv")
-                res7.16.1 <- read.csv("res7.16.1.csv"); res7.16.2 <- read.csv("res7.16.2.csv"); res7.16.3 <- read.csv("res7.16.3.csv")
-                res7.16.4 <- read.csv("res7.16.4.csv"); res7.16.5 <- read.csv("res7.16.5.csv"); res7.16.6 <- read.csv("res7.16.6.csv")
-                res7.17.1 <- read.csv("res7.17.1.csv"); res7.17.2 <- read.csv("res7.17.2.csv"); res7.17.3 <- read.csv("res7.17.3.csv")
-                res7.17.4 <- read.csv("res7.17.4.csv"); res7.17.5 <- read.csv("res7.17.5.csv"); res7.17.6 <- read.csv("res7.17.6.csv")
-                res7.18.1 <- read.csv("res7.18.1.csv"); res7.18.2 <- read.csv("res7.18.2.csv"); res7.18.3 <- read.csv("res7.18.3.csv")
-                res7.18.4 <- read.csv("res7.18.4.csv"); res7.18.5 <- read.csv("res7.18.5.csv"); res7.18.6 <- read.csv("res7.18.6.csv")
+# for k = 7
+res7.1.1  <- read.csv("res7.1.1.csv");  res7.1.2  <- read.csv("res7.1.2.csv");  res7.1.3  <- read.csv("res7.1.3.csv")
+res7.1.4  <- read.csv("res7.1.4.csv");  res7.1.5  <- read.csv("res7.1.5.csv");  res7.1.6  <- read.csv("res7.1.6.csv")
+res7.2.1  <- read.csv("res7.2.1.csv");  res7.2.2  <- read.csv("res7.2.2.csv");  res7.2.3  <- read.csv("res7.2.3.csv")
+res7.2.4  <- read.csv("res7.2.4.csv");  res7.2.5  <- read.csv("res7.2.5.csv");  res7.2.6  <- read.csv("res7.2.6.csv")
+res7.3.1  <- read.csv("res7.3.1.csv");  res7.3.2  <- read.csv("res7.3.2.csv");  res7.3.3  <- read.csv("res7.3.3.csv")
+res7.3.4  <- read.csv("res7.3.4.csv");  res7.3.5  <- read.csv("res7.3.5.csv");  res7.3.6  <- read.csv("res7.3.6.csv")
+res7.4.1  <- read.csv("res7.4.1.csv");  res7.4.2  <- read.csv("res7.4.2.csv");  res7.4.3  <- read.csv("res7.4.3.csv")
+res7.4.4  <- read.csv("res7.4.4.csv");  res7.4.5  <- read.csv("res7.4.5.csv");  res7.4.6  <- read.csv("res7.4.6.csv")
+res7.5.1  <- read.csv("res7.5.1.csv");  res7.5.2  <- read.csv("res7.5.2.csv");  res7.5.3  <- read.csv("res7.5.3.csv")
+res7.5.4  <- read.csv("res7.5.4.csv");  res7.5.5  <- read.csv("res7.5.5.csv");  res7.5.6  <- read.csv("res7.5.6.csv")
+res7.6.1  <- read.csv("res7.6.1.csv");  res7.6.2  <- read.csv("res7.6.2.csv");  res7.6.3  <- read.csv("res7.6.3.csv")
+res7.6.4  <- read.csv("res7.6.4.csv");  res7.6.5  <- read.csv("res7.6.5.csv");  res7.6.6  <- read.csv("res7.6.6.csv")
+res7.7.1  <- read.csv("res7.7.1.csv");  res7.7.2  <- read.csv("res7.7.2.csv");  res7.7.3  <- read.csv("res7.7.3.csv")
+res7.7.4  <- read.csv("res7.7.4.csv");  res7.7.5  <- read.csv("res7.7.5.csv");  res7.7.6  <- read.csv("res7.7.6.csv")
+res7.8.1  <- read.csv("res7.8.1.csv");  res7.8.2  <- read.csv("res7.8.2.csv");  res7.8.3  <- read.csv("res7.8.3.csv")
+res7.8.4  <- read.csv("res7.8.4.csv");  res7.8.5  <- read.csv("res7.8.5.csv");  res7.8.6  <- read.csv("res7.8.6.csv")
+res7.9.1  <- read.csv("res7.9.1.csv");  res7.9.2  <- read.csv("res7.9.2.csv");  res7.9.3  <- read.csv("res7.9.3.csv")
+res7.9.4  <- read.csv("res7.9.4.csv");  res7.9.5  <- read.csv("res7.9.5.csv");  res7.9.6  <- read.csv("res7.9.6.csv")
+res7.10.1 <- read.csv("res7.10.1.csv"); res7.10.2 <- read.csv("res7.10.2.csv"); res7.10.3 <- read.csv("res7.10.3.csv")
+res7.10.4 <- read.csv("res7.10.4.csv"); res7.10.5 <- read.csv("res7.10.5.csv"); res7.10.6 <- read.csv("res7.10.6.csv")
+res7.11.1 <- read.csv("res7.11.1.csv"); res7.11.2 <- read.csv("res7.11.2.csv"); res7.11.3 <- read.csv("res7.11.3.csv")
+res7.11.4 <- read.csv("res7.11.4.csv"); res7.11.5 <- read.csv("res7.11.5.csv"); res7.11.6 <- read.csv("res7.11.6.csv")
+res7.12.1 <- read.csv("res7.12.1.csv"); res7.12.2 <- read.csv("res7.12.2.csv"); res7.12.3 <- read.csv("res7.12.3.csv")
+res7.12.4 <- read.csv("res7.12.4.csv"); res7.12.5 <- read.csv("res7.12.5.csv"); res7.12.6 <- read.csv("res7.12.6.csv")
+res7.13.1 <- read.csv("res7.13.1.csv"); res7.13.2 <- read.csv("res7.13.2.csv"); res7.13.3 <- read.csv("res7.13.3.csv")
+res7.13.4 <- read.csv("res7.13.4.csv"); res7.13.5 <- read.csv("res7.13.5.csv"); res7.13.6 <- read.csv("res7.13.6.csv")
+res7.14.1 <- read.csv("res7.14.1.csv"); res7.14.2 <- read.csv("res7.14.2.csv"); res7.14.3 <- read.csv("res7.14.3.csv")
+res7.14.4 <- read.csv("res7.14.4.csv"); res7.14.5 <- read.csv("res7.14.5.csv"); res7.14.6 <- read.csv("res7.14.6.csv")
+res7.15.1 <- read.csv("res7.15.1.csv"); res7.15.2 <- read.csv("res7.15.2.csv"); res7.15.3 <- read.csv("res7.15.3.csv")
+res7.15.4 <- read.csv("res7.15.4.csv"); res7.15.5 <- read.csv("res7.15.5.csv"); res7.15.6 <- read.csv("res7.15.6.csv")
+res7.16.1 <- read.csv("res7.16.1.csv"); res7.16.2 <- read.csv("res7.16.2.csv"); res7.16.3 <- read.csv("res7.16.3.csv")
+res7.16.4 <- read.csv("res7.16.4.csv"); res7.16.5 <- read.csv("res7.16.5.csv"); res7.16.6 <- read.csv("res7.16.6.csv")
+res7.17.1 <- read.csv("res7.17.1.csv"); res7.17.2 <- read.csv("res7.17.2.csv"); res7.17.3 <- read.csv("res7.17.3.csv")
+res7.17.4 <- read.csv("res7.17.4.csv"); res7.17.5 <- read.csv("res7.17.5.csv"); res7.17.6 <- read.csv("res7.17.6.csv")
+res7.18.1 <- read.csv("res7.18.1.csv"); res7.18.2 <- read.csv("res7.18.2.csv"); res7.18.3 <- read.csv("res7.18.3.csv")
+res7.18.4 <- read.csv("res7.18.4.csv"); res7.18.5 <- read.csv("res7.18.5.csv"); res7.18.6 <- read.csv("res7.18.6.csv")
                 
-                res7_bal <- rbind(res7.1.1,  res7.1.2,  res7.1.3,  res7.1.4,  res7.1.5,  res7.1.6,
-                              res7.2.1,  res7.2.2,  res7.2.3,  res7.2.4,  res7.2.5,  res7.2.6,
-                              res7.3.1,  res7.3.2,  res7.3.3,  res7.3.4,  res7.3.5,  res7.3.6,
-                              res7.4.1,  res7.4.2,  res7.4.3,  res7.4.4,  res7.4.5,  res7.4.6,
-                              res7.5.1,  res7.5.2,  res7.5.3,  res7.5.4,  res7.5.5,  res7.5.6,
-                              res7.6.1,  res7.6.2,  res7.6.3,  res7.6.4,  res7.6.5,  res7.6.6,
-                              res7.7.1,  res7.7.2,  res7.7.3,  res7.7.4,  res7.7.5,  res7.7.6,
-                              res7.8.1,  res7.8.2,  res7.8.3,  res7.8.4,  res7.8.5,  res7.8.6,
-                              res7.9.1,  res7.9.2,  res7.9.3,  res7.9.4,  res7.9.5,  res7.9.6)
+res7_bal <- rbind(res7.1.1,  res7.1.2,  res7.1.3,  res7.1.4,  res7.1.5,  res7.1.6,
+                  res7.2.1,  res7.2.2,  res7.2.3,  res7.2.4,  res7.2.5,  res7.2.6,
+                  res7.3.1,  res7.3.2,  res7.3.3,  res7.3.4,  res7.3.5,  res7.3.6,
+                  res7.4.1,  res7.4.2,  res7.4.3,  res7.4.4,  res7.4.5,  res7.4.6,
+                  res7.5.1,  res7.5.2,  res7.5.3,  res7.5.4,  res7.5.5,  res7.5.6,
+                  res7.6.1,  res7.6.2,  res7.6.3,  res7.6.4,  res7.6.5,  res7.6.6,
+                  res7.7.1,  res7.7.2,  res7.7.3,  res7.7.4,  res7.7.5,  res7.7.6,
+                  res7.8.1,  res7.8.2,  res7.8.3,  res7.8.4,  res7.8.5,  res7.8.6,
+                  res7.9.1,  res7.9.2,  res7.9.3,  res7.9.4,  res7.9.5,  res7.9.6)
                 
                 
-                res7_unb <- rbind(res7.10.1, res7.10.2, res7.10.3, res7.10.4, res7.10.5, res7.10.6,
-                              res7.11.1, res7.11.2, res7.11.3, res7.11.4, res7.11.5, res7.11.6,
-                              res7.12.1, res7.12.2, res7.12.3, res7.12.4, res7.12.5, res7.12.6,
-                              res7.13.1, res7.13.2, res7.13.3, res7.13.4, res7.13.5, res7.13.6,
-                              res7.14.1, res7.14.2, res7.14.3, res7.14.4, res7.14.5, res7.14.6,
-                              res7.15.1, res7.15.2, res7.15.3, res7.15.4, res7.15.5, res7.15.6,
-                              res7.16.1, res7.16.2, res7.16.3, res7.16.4, res7.16.5, res7.16.6,
-                              res7.17.1, res7.17.2, res7.17.3, res7.17.4, res7.17.5, res7.17.6,
-                              res7.18.1, res7.18.2, res7.18.3, res7.18.4, res7.18.5, res7.18.6)
+res7_unb <- rbind(res7.10.1, res7.10.2, res7.10.3, res7.10.4, res7.10.5, res7.10.6,
+                  res7.11.1, res7.11.2, res7.11.3, res7.11.4, res7.11.5, res7.11.6,
+                  res7.12.1, res7.12.2, res7.12.3, res7.12.4, res7.12.5, res7.12.6,
+                  res7.13.1, res7.13.2, res7.13.3, res7.13.4, res7.13.5, res7.13.6,
+                  res7.14.1, res7.14.2, res7.14.3, res7.14.4, res7.14.5, res7.14.6,
+                  res7.15.1, res7.15.2, res7.15.3, res7.15.4, res7.15.5, res7.15.6,
+                  res7.16.1, res7.16.2, res7.16.3, res7.16.4, res7.16.5, res7.16.6,
+                  res7.17.1, res7.17.2, res7.17.3, res7.17.4, res7.17.5, res7.17.6,
+                  res7.18.1, res7.18.2, res7.18.3, res7.18.4, res7.18.5, res7.18.6)
                 
-                res7_nep <- rbind(res7.19.1, res7.19.2, res7.19.3, res7.19.4, res7.19.5, res7.19.6,
-                                  res7.20.1, res7.20.2, res7.20.3, res7.20.4, res7.20.5, res7.20.6,
-                                  res7.21.1, res7.21.2, res7.21.3, res7.21.4, res7.21.5, res7.21.6,
-                                  res7.22.1, res7.22.2, res7.22.3, res7.22.4, res7.22.5, res7.22.6,
-                                  res7.23.1, res7.23.2, res7.23.3, res7.23.4, res7.23.5, res7.23.6,
-                                  res7.24.1, res7.24.2, res7.24.3, res7.24.4, res7.24.5, res7.24.6,
-                                  res7.25.1, res7.25.2, res7.25.3, res7.25.4, res7.25.5, res7.25.6,
-                                  res7.26.1, res7.26.2, res7.26.3, res7.26.4, res7.26.5, res7.26.6,
-                                  res7.27.1, res7.27.2, res7.27.3, res7.27.4, res7.27.5, res7.27.6)
+res7_nep <- rbind(res7.19.1, res7.19.2, res7.19.3, res7.19.4, res7.19.5, res7.19.6,
+                  res7.20.1, res7.20.2, res7.20.3, res7.20.4, res7.20.5, res7.20.6,
+                  res7.21.1, res7.21.2, res7.21.3, res7.21.4, res7.21.5, res7.21.6,
+                  res7.22.1, res7.22.2, res7.22.3, res7.22.4, res7.22.5, res7.22.6,
+                  res7.23.1, res7.23.2, res7.23.3, res7.23.4, res7.23.5, res7.23.6,
+                  res7.24.1, res7.24.2, res7.24.3, res7.24.4, res7.24.5, res7.24.6,
+                  res7.25.1, res7.25.2, res7.25.3, res7.25.4, res7.25.5, res7.25.6,
+                  res7.26.1, res7.26.2, res7.26.3, res7.26.4, res7.26.5, res7.26.6,
+                  res7.27.1, res7.27.2, res7.27.3, res7.27.4, res7.27.5, res7.27.6)
                 
 n_k7_bal <- c(rep(c(rep("n=(10,10,10,10,10,10,10)", 6), rep("n=(30,30,30,30,30,30,30)", 6), rep("n=(50,50,50,50,50,50,50)", 6)), 3))
 n_k7_unb <- c(rep(c(rep("n=(4,6,8,10,12,14,16)", 6), rep("n=(12,18,24,30,36,42,48)", 6), rep("n=(20,30,40,50,60,70,80)", 6)), 3))
@@ -787,23 +788,23 @@ n_k7_nep <- factor(n, levels=c("n=(12,18,24,30,36,42,48)", "n=(50,50,50,50,50,50
 m <- rep(c(0, 0.4, 0.8, 1.2, 1.6, 2), 9)
 s <- rep(c(rep("σ=(1,2,3,4,5,6,7)", 9), rep("σ=(1,4,7,11,15,19,23)", 9), rep("σ=(0.1,0.2,0.3,0.4,0.5,0.6,0.7)", 9)), 2)
                 
-                k7_bal <- cbind(sample_size = rep(n_k7_bal, each = 10000),
-                                sd = rep(s, each = 10000),
-                                effect_size = rep(m, each = 10000),
-                                repetition = res7_bal$X,
-                                res7_bal[,-1])
+k7_bal <- cbind(sample_size = rep(n_k7_bal, each = 10000),
+                sd = rep(s, each = 10000),
+                effect_size = rep(m, each = 10000),
+                repetition = res7_bal$X,
+                res7_bal[,-1])
                 
-                k7_unb <- cbind(sample_size = rep(n_k7_unb, each = 10000),
-                                sd = rep(s, each = 10000),
-                                effect_size = rep(m, each = 10000),
-                                repetition = res7_unb$X,
-                                res7_unb[,-1])
+k7_unb <- cbind(sample_size = rep(n_k7_unb, each = 10000),
+                sd = rep(s, each = 10000),
+                effect_size = rep(m, each = 10000),
+                repetition = res7_unb$X,
+                res7_unb[,-1])
                 
-                k7_nep <- cbind(sample_size = rep(n_k7_nep, each = 10000),
-                                sd = rep(s, each = 10000),
-                                effect_size = rep(m, each = 10000),
-                                repetition = res7_nep$X,
-                                res7_nep[,-1])
+k7_nep <- cbind(sample_size = rep(n_k7_nep, each = 10000),
+                sd = rep(s, each = 10000),
+                effect_size = rep(m, each = 10000),
+                repetition = res7_nep$X,
+                res7_nep[,-1])
                 
 # ---------------------------------------------------------------------------------------
 # 5. Visualizing the results
@@ -825,104 +826,104 @@ k3.pivot_nep <- k3_nep %>%
                 
 # k5 <- read_csv("k5.csv")
 k5.pivot_bal <- k5_bal %>%
-pivot_longer(!c(sample_size, sd, effect_size, repetition), names_to = "test", values_to = "pvalue")
+  pivot_longer(!c(sample_size, sd, effect_size, repetition), names_to = "test", values_to = "pvalue")
 
 k5.pivot_unb <- k5_unb %>%
-pivot_longer(!c(sample_size, sd, effect_size, repetition), names_to = "test", values_to = "pvalue")
+  pivot_longer(!c(sample_size, sd, effect_size, repetition), names_to = "test", values_to = "pvalue")
                 
 k5.pivot_nep <- k5_nep %>%
-pivot_longer(!c(sample_size, sd, effect_size, repetition), names_to = "test", values_to = "pvalue")
+  pivot_longer(!c(sample_size, sd, effect_size, repetition), names_to = "test", values_to = "pvalue")
                 
 # k7 <- read_csv("k7.csv")
 k7.pivot_bal <- k7_bal %>%
-pivot_longer(!c(sample_size, sd, effect_size, repetition), names_to = "test", values_to = "pvalue")
+  pivot_longer(!c(sample_size, sd, effect_size, repetition), names_to = "test", values_to = "pvalue")
                 
 k7.pivot_unb <- k7_unb %>%
-pivot_longer(!c(sample_size, sd, effect_size, repetition), names_to = "test", values_to = "pvalue")
+  pivot_longer(!c(sample_size, sd, effect_size, repetition), names_to = "test", values_to = "pvalue")
 
 k7.pivot_nep <- k7_nep %>%
-pivot_longer(!c(sample_size, sd, effect_size, repetition), names_to = "test", values_to = "pvalue")
+  pivot_longer(!c(sample_size, sd, effect_size, repetition), names_to = "test", values_to = "pvalue")
                 
 # MPV graph for k = 3
 mpv_k3_bal <- k3.pivot_bal %>% group_by(sample_size, effect_size, sd, test) %>% summarize(pvalue = median(pvalue))
                 
 plot_k3_bal <- ggplot(mpv_k3_bal, aes(effect_size, pvalue)) +
-geom_line(aes(colour = test)) +
-geom_point(aes(colour = test)) +
-facet_grid(sample_size ~ sd) +
-labs(x = "effect size", y = "MPV")
+  geom_line(aes(colour = test)) +
+  geom_point(aes(colour = test)) +
+  facet_grid(sample_size ~ sd) +
+  labs(x = "effect size", y = "MPV")
                 
                 
 mpv_k3_unb <- k3.pivot_unb %>% group_by(sample_size, effect_size, sd, test) %>% summarize(pvalue = median(pvalue))
                 
 plot_k3_unb <- ggplot(mpv_k3_unb, aes(effect_size, pvalue)) +
-geom_line(aes(colour = test)) +
-geom_point(aes(colour = test)) +
-facet_grid(sample_size ~ sd) +
-labs(x = "effect size", y = "MPV")
+  geom_line(aes(colour = test)) +
+  geom_point(aes(colour = test)) +
+  facet_grid(sample_size ~ sd) +
+  labs(x = "effect size", y = "MPV")
                 
                 
 mpv_k3_nep <- k3.pivot_nep %>% group_by(sample_size, effect_size, sd, test) %>% summarize(pvalue = median(pvalue))
                 
 plot_k3_nep <- ggplot(mpv_k3_nep, aes(effect_size, pvalue)) +
-geom_line(aes(colour = test)) +
-geom_point(aes(colour = test)) +
-facet_grid(sample_size ~ sd) +
-labs(x = "effect size", y = "MPV")
+  geom_line(aes(colour = test)) +
+  geom_point(aes(colour = test)) +
+  facet_grid(sample_size ~ sd) +
+  labs(x = "effect size", y = "MPV")
                 
 # MPV graph for k = 5
 mpv_k5_bal <- k5.pivot_bal %>% group_by(sample_size, effect_size, sd, test) %>% summarize(pvalue = median(pvalue))
                 
 plot_k5_bal <- ggplot(mpv_k5_bal, aes(effect_size, pvalue)) +
-geom_line(aes(colour = test)) +
-geom_point(aes(colour = test)) +
-facet_grid(sample_size ~ sd) +
-labs(x = "effect size", y = "MPV")
+  geom_line(aes(colour = test)) +
+  geom_point(aes(colour = test)) +
+  facet_grid(sample_size ~ sd) +
+  labs(x = "effect size", y = "MPV")
                 
                 
 mpv_k5_unb <- k5.pivot_unb %>% group_by(sample_size, effect_size, sd, test) %>% summarize(pvalue = median(pvalue))
                 
 plot_k5_unb <- ggplot(mpv_k5_unb, aes(effect_size, pvalue)) +
-geom_line(aes(colour = test)) +
-geom_point(aes(colour = test)) +
-facet_grid(sample_size ~ sd) +
-labs(x = "effect size", y = "MPV")
+  geom_line(aes(colour = test)) +
+  geom_point(aes(colour = test)) +
+  facet_grid(sample_size ~ sd) +
+  labs(x = "effect size", y = "MPV")
                 
                 
 mpv_k5_nep <- k5.pivot_nep %>% group_by(sample_size, effect_size, sd, test) %>% summarize(pvalue = median(pvalue))
                 
 plot_k5_nep <- ggplot(mpv_k5_nep, aes(effect_size, pvalue)) +
-geom_line(aes(colour = test)) +
-geom_point(aes(colour = test)) +
-facet_grid(sample_size ~ sd) +
-labs(x = "effect size", y = "MPV")
+  geom_line(aes(colour = test)) +
+  geom_point(aes(colour = test)) +
+  facet_grid(sample_size ~ sd) +
+  labs(x = "effect size", y = "MPV")
                 
 # MPV graph for k = 7
 mpv_k7_bal <- k7.pivot_bal %>% group_by(sample_size, effect_size, sd, test) %>% summarize(pvalue = median(pvalue))
                 
 plot_k7_bal <- ggplot(mpv_k7_bal, aes(effect_size, pvalue)) +
-geom_line(aes(colour = test)) +
-geom_point(aes(colour = test)) +
-facet_grid(sample_size ~ sd) +
-labs(x = "effect size", y = "MPV")
+  geom_line(aes(colour = test)) +
+  geom_point(aes(colour = test)) +
+  facet_grid(sample_size ~ sd) +
+  labs(x = "effect size", y = "MPV")
                 
                 
 mpv_k7_unb <- k7.pivot_unb %>% group_by(sample_size, effect_size, sd, test) %>% summarize(pvalue = median(pvalue))
                 
 plot_k7_unb <- ggplot(mpv_k7_unb, aes(effect_size, pvalue)) +
-geom_line(aes(colour = test)) +
-geom_point(aes(colour = test)) +
-facet_grid(sample_size ~ sd) +
-labs(x = "effect size", y = "MPV")
+  geom_line(aes(colour = test)) +
+  geom_point(aes(colour = test)) +
+  facet_grid(sample_size ~ sd) +
+  labs(x = "effect size", y = "MPV")
                 
                 
 mpv_k7_nep <- k7.pivot_nep %>% group_by(sample_size, effect_size, sd, test) %>% summarize(pvalue = median(pvalue))
                 
 plot_k7_nep <- ggplot(mpv_k7_nep, aes(effect_size, pvalue)) +
-geom_line(aes(colour = test)) +
-geom_point(aes(colour = test)) +
-facet_grid(sample_size ~ sd) +
-labs(x = "effect size", y = "MPV")
+  geom_line(aes(colour = test)) +
+  geom_point(aes(colour = test)) +
+  facet_grid(sample_size ~ sd) +
+  labs(x = "effect size", y = "MPV")
                 
                 
                 
