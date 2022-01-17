@@ -4,6 +4,7 @@
 #
 # Created by Mustafa Cavus
 # Date: Nov 19, 2021
+# Revised date: Jan 17, 2022
 # Contact: mustafacavus@eskisehir.edu.tr
 # ---------------------------------------------------------------------------------------
 # 1. Introduction
@@ -554,38 +555,45 @@ res3.17.4 <- read.csv("res3.17.4.csv"); res3.17.5 <- read.csv("res3.17.5.csv"); 
 res3.18.1 <- read.csv("res3.18.1.csv"); res3.18.2 <- read.csv("res3.18.2.csv"); res3.18.3 <- read.csv("res3.18.3.csv")
 res3.18.4 <- read.csv("res3.18.4.csv"); res3.18.5 <- read.csv("res3.18.5.csv"); res3.18.6 <- read.csv("res3.18.6.csv")
 
-res3 <- rbind(res3.1.1,  res3.1.2,  res3.1.3,  res3.1.4,  res3.1.5,  res3.1.6,
-              res3.2.1,  res3.2.2,  res3.2.3,  res3.2.4,  res3.2.5,  res3.2.6,
-              res3.3.1,  res3.3.2,  res3.3.3,  res3.3.4,  res3.3.5,  res3.3.6,
-              res3.4.1,  res3.4.2,  res3.4.3,  res3.4.4,  res3.4.5,  res3.4.6,
-              res3.5.1,  res3.5.2,  res3.5.3,  res3.5.4,  res3.5.5,  res3.5.6,
-              res3.6.1,  res3.6.2,  res3.6.3,  res3.6.4,  res3.6.5,  res3.6.6,
-              res3.7.1,  res3.7.2,  res3.7.3,  res3.7.4,  res3.7.5,  res3.7.6,
-              res3.8.1,  res3.8.2,  res3.8.3,  res3.8.4,  res3.8.5,  res3.8.6,
-              res3.9.1,  res3.9.2,  res3.9.3,  res3.9.4,  res3.9.5,  res3.9.6,
-              res3.10.1, res3.10.2, res3.10.3, res3.10.4, res3.10.5, res3.10.6,
-              res3.11.1, res3.11.2, res3.11.3, res3.11.4, res3.11.5, res3.11.6,
-              res3.12.1, res3.12.2, res3.12.3, res3.12.4, res3.12.5, res3.12.6,
-              res3.13.1, res3.13.2, res3.13.3, res3.13.4, res3.13.5, res3.13.6,
-              res3.14.1, res3.14.2, res3.14.3, res3.14.4, res3.14.5, res3.14.6,
-              res3.15.1, res3.15.2, res3.15.3, res3.15.4, res3.15.5, res3.15.6,
-              res3.16.1, res3.16.2, res3.16.3, res3.16.4, res3.16.5, res3.16.6,
-              res3.17.1, res3.17.2, res3.17.3, res3.17.4, res3.17.5, res3.17.6,
-              res3.18.1, res3.18.2, res3.18.3, res3.18.4, res3.18.5, res3.18.6)
+res3_bal <- rbind(res3.1.1,  res3.1.2,  res3.1.3,  res3.1.4,  res3.1.5,  res3.1.6,
+                  res3.2.1,  res3.2.2,  res3.2.3,  res3.2.4,  res3.2.5,  res3.2.6,
+                  res3.3.1,  res3.3.2,  res3.3.3,  res3.3.4,  res3.3.5,  res3.3.6,
+                  res3.4.1,  res3.4.2,  res3.4.3,  res3.4.4,  res3.4.5,  res3.4.6,
+                  res3.5.1,  res3.5.2,  res3.5.3,  res3.5.4,  res3.5.5,  res3.5.6,
+                  res3.6.1,  res3.6.2,  res3.6.3,  res3.6.4,  res3.6.5,  res3.6.6,
+                  res3.7.1,  res3.7.2,  res3.7.3,  res3.7.4,  res3.7.5,  res3.7.6,
+                  res3.8.1,  res3.8.2,  res3.8.3,  res3.8.4,  res3.8.5,  res3.8.6,
+                  res3.9.1,  res3.9.2,  res3.9.3,  res3.9.4,  res3.9.5,  res3.9.6)
+              
+res3_unb <- rbind(res3.10.1, res3.10.2, res3.10.3, res3.10.4, res3.10.5, res3.10.6,
+                  res3.11.1, res3.11.2, res3.11.3, res3.11.4, res3.11.5, res3.11.6,
+                  res3.12.1, res3.12.2, res3.12.3, res3.12.4, res3.12.5, res3.12.6,
+                  res3.13.1, res3.13.2, res3.13.3, res3.13.4, res3.13.5, res3.13.6,
+                  res3.14.1, res3.14.2, res3.14.3, res3.14.4, res3.14.5, res3.14.6,
+                  res3.15.1, res3.15.2, res3.15.3, res3.15.4, res3.15.5, res3.15.6,
+                  res3.16.1, res3.16.2, res3.16.3, res3.16.4, res3.16.5, res3.16.6,
+                  res3.17.1, res3.17.2, res3.17.3, res3.17.4, res3.17.5, res3.17.6,
+                  res3.18.1, res3.18.2, res3.18.3, res3.18.4, res3.18.5, res3.18.6)
 
-n <- c(rep(c(rep("n=(10,10,10)", 6), rep("n=(30,30,30)", 6), rep("n=(50,50,50)", 6)), 3),
-       rep(c(rep("n=(5,10,15)", 6),  rep("n=(15,30,45)", 6), rep("n=(25,50,75)", 6)), 3))
-n <- factor(n, levels=c("n=(10,10,10)", "n=(5,10,15)", "n=(30,30,30)",
-                        "n=(15,30,45)", "n=(50,50,50)", "n=(25,50,75)"))
-m <- rep(c(0, 0.4, 0.8, 1.2, 1.6, 2), 18)
-s <- rep(c(rep("σ=(1,2,3)", 18), rep("σ=(1,4,7)", 18), rep("σ=(0.1,0.2,0.3)", 18)), 2)
+n_k3_bal   <- c(rep(c(rep("n=(10,10,10)", 6), rep("n=(30,30,30)", 6), rep("n=(50,50,50)", 6)), 3),
+n_k3_unbal <- c(rep(c(rep("n=(5,10,15)", 6),  rep("n=(15,30,45)", 6), rep("n=(25,50,75)", 6)), 3))
+
+m <- rep(c(0, 0.4, 0.8, 1.2, 1.6, 2), 9)
+s <- rep(c(rep("σ=(1,2,3)", 9), rep("σ=(1,4,7)", 9), rep("σ=(0.1,0.2,0.3)", 9)), 2)
+
 s <- factor(s, levels=c("σ=(0.1,0.2,0.3)", "σ=(1,2,3)", "σ=(1,4,7)"))
 
-k3 <- cbind(sample_size = rep(n, each = 10000),
-            sd = rep(s, each = 10000),
-            effect_size = rep(m, each = 10000),
-            repetition = res3$X,
-            res3[,-1])
+k3_bal <- cbind(sample_size = rep(n_k3_bal, each = 10000),
+                sd = rep(s, each = 10000),
+                effect_size = rep(m, each = 10000),
+                repetition = res3_bal$X,
+                res3_bal[,-1])
+                
+k3_unb <- cbind(sample_size = rep(n_k3_unb, each = 10000),
+                sd = rep(s, each = 10000),
+                effect_size = rep(m, each = 10000),
+                repetition = res3_unb$X,
+                res3_unb[,-1])
 
 # for k = 5
 res5.1.1  <- read.csv("res5.1.1.csv");  res5.1.2  <- read.csv("res5.1.2.csv");  res5.1.3  <- read.csv("res5.1.3.csv")
