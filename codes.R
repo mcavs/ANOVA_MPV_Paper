@@ -126,10 +126,10 @@ comp7 <- function(n1, n2, n3, n4, n5, n6, n7,
   return(resp)
 }
 
-# ---------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------
 # 3. Simulation scenarios
-# ---------------------------------------------------------------------------------------
-
+# --------------------------------------------------------------------------------------------
+# You can find the simulation results in the .csv files in k3, k5, k5 folders in this repo
 res3.1.1  <- comp3(10, 10, 10, 0, 0, 0  , 1, 2, 3, 10000); write.csv(res3.1.1, "res3.1.1.csv")
 res3.1.2  <- comp3(10, 10, 10, 0, 0, 0.4, 1, 2, 3, 10000); write.csv(res3.1.2, "res3.1.2.csv")
 res3.1.3  <- comp3(10, 10, 10, 0, 0, 0.8, 1, 2, 3, 10000); write.csv(res3.1.3, "res3.1.3.csv")
@@ -1053,7 +1053,7 @@ k7.pivot_unb <- k7_unb %>%
 k7.pivot_nep <- k7_nep %>%
   pivot_longer(!c(sample_size, sd, effect_size, repetition), names_to = "test", values_to = "pvalue")
                 
-# Figure 1
+# Figure 1: The MPV of the tests in positive pairing design for k=3.
 mpv_k3_bal <- k3.pivot_bal %>%
   group_by(sample_size, effect_size, sd, test) %>%
   summarize(pvalue = median(pvalue))
@@ -1079,7 +1079,7 @@ ggplot(mpv_k3_pop, aes(effect_size, pvalue)) +
         axis.title = element_text(face="bold"),
         legend.title = element_text(face="bold"))  
 
-# Figure 2 
+# Figure 2: The MPV of the tests in negative pairing design for k=3.
 ggplot(mpv_k3_nep, aes(effect_size, pvalue)) +
   geom_line(aes(colour = test)) +
   geom_point(aes(colour = test)) +
@@ -1091,7 +1091,7 @@ ggplot(mpv_k3_nep, aes(effect_size, pvalue)) +
         legend.title = element_text(face="bold")) 
 
 
-# Figure 3
+# Figure 3: The MPV of the tests in positive pairing design for k=5.
 mpv_k5_bal <- k5.pivot_bal %>%
   group_by(sample_size, effect_size, sd, test) %>%
   summarize(pvalue = median(pvalue))
@@ -1117,7 +1117,7 @@ ggplot(mpv_k5_pop, aes(effect_size, pvalue)) +
         axis.title = element_text(face="bold"),
         legend.title = element_text(face="bold")) 
 
-# Figure 4
+# Figure 4: The MPV of the tests in negative pairing design for k=5.
 ggplot(mpv_k5_nep, aes(effect_size, pvalue)) +
   geom_line(aes(colour = test)) +
   geom_point(aes(colour = test)) +
@@ -1128,7 +1128,7 @@ ggplot(mpv_k5_nep, aes(effect_size, pvalue)) +
         axis.title = element_text(face="bold"),
         legend.title = element_text(face="bold")) 
 
-# Figure 5
+# Figure 5: The MPV of the tests in positive pairing design for k=7.
 
 mpv_k7_bal <- k7.pivot_bal %>%
   group_by(sample_size, effect_size, sd, test) %>%
@@ -1155,7 +1155,7 @@ ggplot(mpv_k7_pop, aes(effect_size, pvalue)) +
         axis.title = element_text(face="bold"),
         legend.title = element_text(face="bold"))  
 
-# Figure 6
+# Figure 6: The MPV of the tests in negative pairing design for k=7.
 ggplot(mpv_k7_nep, aes(effect_size, pvalue)) +
   geom_line(aes(colour = test)) +
   geom_point(aes(colour = test)) +
