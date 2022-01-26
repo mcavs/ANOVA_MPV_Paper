@@ -1083,7 +1083,7 @@ ggplot(mpv_k3_pop, aes(effect_size, pvalue)) +
 ggplot(mpv_k3_nep, aes(effect_size, pvalue)) +
   geom_line(aes(colour = test)) +
   geom_point(aes(colour = test)) +
-  facet_grid(sd ~ sample_size) +
+  facet_grid(sample_size ~ sd) +
   labs(x = "effect size",
        y = "MPV") +
   theme(text = element_text(size = 15),
@@ -1121,7 +1121,7 @@ ggplot(mpv_k5_pop, aes(effect_size, pvalue)) +
 ggplot(mpv_k5_nep, aes(effect_size, pvalue)) +
   geom_line(aes(colour = test)) +
   geom_point(aes(colour = test)) +
-  facet_grid(sd ~ sample_size) +
+  facet_grid(sample_size ~ sd) +
   labs(x = "effect size",
        y = "MPV") +
   theme(text = element_text(size = 15),
@@ -1159,7 +1159,7 @@ ggplot(mpv_k7_pop, aes(effect_size, pvalue)) +
 ggplot(mpv_k7_nep, aes(effect_size, pvalue)) +
   geom_line(aes(colour = test)) +
   geom_point(aes(colour = test)) +
-  facet_grid(sd ~ sample_size) +
+  facet_grid(sample_size ~ sd) +
   labs(x = "effect size",
        y = "MPV") +
   theme(text = element_text(size = 15),
